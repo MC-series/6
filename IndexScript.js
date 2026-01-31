@@ -1,3 +1,37 @@
+// Automatically show the warning when the page is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('asite-mod');
+    if (modal) {
+        setTimeout(() => {
+            modal.classList.add('nav-ds-show');
+        }, 500);
+    }
+});
+
+// Close function for the button
+function asiteExit() {
+    const modal = document.getElementById('asite-mod');
+    if (modal) {
+        modal.classList.remove('nav-ds-show');
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if (scrollToTopBtn) {
   window.addEventListener('scroll', () => {
     if (window.pageYOffset > 300) {
@@ -11,12 +45,6 @@ if (scrollToTopBtn) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
-
-
-
-
-
-
 
 
 function scrollToOST(event) {
