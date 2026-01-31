@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Include HTML</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <Style>
+
+body {
+  overflow-y: hidden; /* Prevent vertical scrolling */
+}
+
+a.topic {
+  color: #000000; /* Initial color */  transition: color 0.3s ease; /* Smooth transition for color */
+  text-decoration: none;
+}
+
+a.topic:hover {
+  color: rgb(196, 196, 196) !important; /* Force the color change */
+  text-decoration: none; /* Ensure text-decoration is removed on hover */
+}
+
+.slid-wrapper {
+  max-width: 1225px;
+  width: 150%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto; /* Center the container horizontally */
+  height: 85vh; /* Ensure the container takes full viewport height */
+}
+
+.slid-wrapper i {
+  top: 50%;
+  height: 50px;
+  width: 50px;
+  font-size: 1.25rem;
+  position: absolute;
+  text-align: center;
+  line-height: 50px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+  z-index: 1; /* Ensure above the carousel */
+}
+
+.slid-wrapper i:active {
+  transform: translateY(-50%) scale(0.85);
+}
+
+.slid-wrapper i:first-child {
+  left: -22px;
+}
+
+.slid-wrapper i:last-child {
+  right: -22px;
+}
+
+.slid-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.slid-carousel.no-transition {
+  scroll-behavior: auto;
+}
+
+.slid-carousel.dragging {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+
+.slid-carousel.dragging .slid-card {
+  cursor: grab;
+  user-select: none;
+}
+
+.slid-carousel .slid-card {
+  scroll-snap-align: start;
+  cursor: pointer;
+  flex-direction: column;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px; /* Added padding */
+}
+
+.slid-carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(100% / 6); /* Adjust this if necessary */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  border-radius: 8px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  height: 600px; /* Adjust if necessary */
+}
+
+.slid-card .slid-img {
+  width: 100%;
+  aspect-ratio: 6 / 9; /* Adjust to your images' ratio */
+  overflow: hidden;
+}
+
+.slid-card .slid-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* or 'contain' */
+}
+
+.slid-card a.topic {
+  display: block; /* Make <a> a block element */
+  width: 100%; /* Ensure it takes the full width of the .slid-img container */
+  padding: 8px 14px;
+  background: #fff;
+  color: #4b5563;
+  font-size: 0.9rem;
+  font-weight: 700;
+  outline: 0;
+  border: 0;
+  border-radius: 5px;
+  margin-top: 10px; /* Add margin-top for spacing between image and link */
+  text-align: center; /* Center the text inside the link */
+  cursor: pointer;
+}
+
+
+.topic {
+  display: inline-block; /* Ensure it stays inline with the image */
+  padding: 8px 14px;
+  background: #fff;
+  color: #4b5563;
+  font-size: 0.9rem;
+  font-weight: 700;
+  outline: 0;
+  border: 0;
+  border-radius: 5px;
+  margin-left: 10px; /* Add a small margin to the left for some space between image and topic */
+  cursor: pointer;
+}
+
+@media only screen 
+  and (min-width: 1000px) 
+  and (max-width: 1600px) 
+  and (orientation: landscape) 
+  and (pointer: coarse) {
+
+  .slid-carousel {
+    grid-auto-columns: calc(100% / 5); /* 5 equal columns */
+    gap: 0; /* No gaps between images */
+    height: auto;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .slid-wrapper {
+    height: auto;
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1000px; /* Adjusted for 5 images */
+  }
+  
+  .slid-wrapper i {
+    height: 40px;
+    width: 40px;
+    font-size: 1rem;
+    line-height: 40px;
+    background: rgba(255,255,255,0.9);
+  }
+  
+  .slid-wrapper i:first-child {
+    left: -15px;
+  }
+  
+  .slid-wrapper i:last-child {
+    right: -15px;
+  }
+  
+  .slid-card {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+  }
+  
+  .slid-card .slid-img {
+    height: 280px; /* Custom height */
+    width: 190px; /* Custom width */
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+  
+  .slid-card .slid-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .slid-card a.topic {
+    font-size: 0.8rem;
+    padding: 5px 8px;
+    margin-top: 5px;
+    width: 180px; /* Match custom width */
+  }
+}
+
+/* Mobile styles (up to 767px) */
+@media only screen and (max-width: 767px) {
+  body {
+    overflow-y: auto;
+  }
+  
+  .slid-carousel {
+    grid-auto-columns: calc((100% - 6px) / 3); /* 3 images with 3px gap (2 gaps between 3 items) */
+    height: auto;
+    gap: 3px; /* Consistent 3px gap */
+    margin: 0 15px; /* Side space for arrows */
+    padding: 0;
+  }
+  
+  .slid-wrapper {
+    height: auto;
+    width: 100%;
+    padding: 0;
+  }
+  
+  .slid-wrapper i {
+    height: 32px;
+    width: 32px;
+    font-size: 0.85rem;
+    line-height: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.95);
+  }
+  
+  .slid-wrapper i:first-child {
+    left: -7px;
+  }
+  
+  .slid-wrapper i:last-child {
+    right: -7px;
+  }
+  
+  .slid-card {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .slid-card .slid-img {
+    aspect-ratio: 2/3;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .slid-card .slid-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .slid-card a.topic {
+    font-size: 0.7rem;
+    padding: 3px 5px;
+    margin: 3px 0 0 0; /* Small top margin */
+  }
+}
+
+    </Style>
+
+</head>
+<body>
+        
+  <div class="slid-wrapper">
+    <i id="left" class="fa-solid fa-angle-left"></i>
+    <div class="slid-carousel">
+      <div class="slid-card">
+        <div class="slid-img"><a href="Spy.html" target="_blank"><img src="https://image.tmdb.org/t/p/original/gHZqglFWJTFwx6rnTq4vkPRnuxu.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Frieren.html" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BZTI4ZGMxN2UtODlkYS00MTBjLWE1YzctYzc3NDViMGI0ZmJmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Solo.html" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjjydKUpH1rz3V2N2oTcKX7O3QIMkH_-xqqw&s" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Exorcist.html" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BNDZjNTgyNDktZTJmZi00YzQ3LWJjNGMtOWQ0ODE1OGMwNmMzXkEyXkFqcGc@._V1_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Misfit.html" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BY2MzZGVhZTgtNWZlYi00NGI5LTk5N2QtYTkzMzNkMWM0NjBhXkEyXkFqcGc@._V1_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="ReZero.html" target="_blank"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ-GXnJH33t-Oulvgw2hTqRdzOv0OZh9FZu-tB6G-iPeih6bV_gaIy56MIiqCaRDmoaKWwVyw" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="DLord.html" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BZTE0ZmQ0ZmYtYjllZS00MDg0LTk3YzMtYzBhMDk4ZjUzNzAyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Tensei.html" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9rtG5dt8r74mgJQobeNflvD8faWZmgxRh8A&s" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Mash.html" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BMTUwMjM2ZTctMjI5Yi00MjIwLWJlYzAtNjk5MDQ0NTlmZWJjXkEyXkFqcGc@._V1_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Aristocrat.html" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuRy2h4jCWsG_fM4h4RGGHH7rWneifFTnhlw&s" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="prince" target="_blank"><img src="https://fr.web.img2.acsta.net/r_1280_720/img/81/4d/814db657f479f14ddd9b22e11dc543a5.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="apo" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BNjAxMmFjZjgtYjM1ZS00NzdmLTliZDktZmIyMzU5YTBlNDBmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="cautious" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BOTY0MWU2OTEtNTFkNi00ZDcxLWE4NzItY2RlNGI1YWQ0MjU2XkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="water" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkxHBscHLLyU6l7hyDexo2avczg8H4Oxog2w&s" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="shadow" target="_blank"><img src="https://media.animationdigitalnetwork.com/images/show/d0465ad8-4974-4331-bc12-3a8a3a02cb77/affiche.width=630,height=900,quality=80" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="v99" target="_blank"><img src="https://m.media-amazon.com/images/I/81VKA-DwQzL._UF1000,1000_QL80_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="loop" target="_blank"><img src="https://m.media-amazon.com/images/I/91sHdmMFw6L._UF1000,1000_QL80_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="history" target="_blank"><img src="https://fr.web.img2.acsta.net/img/61/27/612765b791b31b8fdf0d317486ed731b.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="guild" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BMzA3N2U1NDQtYzQyZi00NmY2LWEzZjktMTU2OWFiZWViNzZlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="konosuba" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BNTQ5NzJjMjgtNDliNC00YTdmLWJiOTQtYWRiMzY4OWU5NGQ3XkEyXkFqcGc@._V1_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="spy" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbNJLIVwUgIDlpzmHNR61iBQslxRc_c0JHeg&s" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="alchemist" target="_blank"><img src="https://fr.web.img3.acsta.net/img/b6/74/b674af60032e00a9a2a7e0e233c07613.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="cheat" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8Kgr4h5aA3-HQeU_Elb60dbEAxEhNDc-dJA&s" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="pride" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BMzkwMmE2YjMtNDY5MC00ZDFjLWFhNWEtNjMwN2RmNGIyZGRhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="gensouki" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyp2XnTJ1Xe-6eGcXQ7nJVEvcusChWAAyfnA&s" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="allowed" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BYjEwNWYzYmUtZTlmYi00OTA3LTljOTEtYTVmZjNiNTQyYTAxXkEyXkFqcGc@._V1_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="ask" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BZjk4MjRmZjctY2RjNC00ZDI0LWJiNTItMTg3ZTIxYjE3ZTk1XkEyXkFqcGc@._V1_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="game" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRs5HEIVqkg00Yg1LxwI7_QZTe4Qkbgz4MxA&s" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="shield" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHA-tnakxs44n7sr-dIuVurw8V2FAieETEDpqHoapVsJNmt1deoXx-Uc2R5RQlRt082zY&usqp=CAU" alt="1" draggable="false"></a></div>
+      </div>
+            <div class="slid-card">
+        <div class="slid-img"><a href="slime" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTprdAzs7EsAUqF_bXjCO4mno6IC8G7BEgQmw&s" alt="1" draggable="false"></a></div>
+      </div>
+    </div>
+    <i id="right" class="fa-solid fa-angle-right"></i>
+    </div>
+    
+  </div>  
+</div>
+
+</body>
+</html>
+<script>
+
+// Image Slidder Code:
+const wrapper = document.querySelector(".slid-wrapper");
+const carousel = document.querySelector(".slid-carousel");
+const firstCardWidth = carousel.querySelector(".slid-card").offsetWidth;
+const arrowBtns = document.querySelectorAll(".slid-wrapper i");
+const carouselChildrens = [...carousel.children];
+let isDragging = false, isAutoPlay = true, startX, startScrollLeft, timeoutId;
+
+// Get the number of cards that can fit in the carousel at once
+let cardPerView = Math.round(carousel.offsetWidth / firstCardWidth);
+
+// Insert copies of the last few cards to beginning of carousel for infinite scrolling
+carouselChildrens.slice(-cardPerView).reverse().forEach(card => {
+carousel.insertAdjacentHTML("afterbegin", card.outerHTML);
+});
+
+// Insert copies of the first few cards to end of carousel for infinite scrolling
+carouselChildrens.slice(0, cardPerView).forEach(card => {
+carousel.insertAdjacentHTML("beforeend", card.outerHTML);
+});
+
+// Scroll the carousel at appropriate position to hide first few duplicate cards on Firefox
+carousel.classList.add("no-transition");
+carousel.scrollLeft = carousel.offsetWidth;
+carousel.classList.remove("no-transition");
+
+// Add event listeners for the arrow buttons to scroll the carousel left and right
+arrowBtns.forEach(btn => {
+btn.addEventListener("click", () => {
+  carousel.scrollLeft += btn.id == "left" ? -firstCardWidth : firstCardWidth;
+});
+});
+
+const dragStart = (e) => {
+isDragging = true;
+carousel.classList.add("dragging");
+// Records the initial cursor and scroll position of the carousel
+startX = e.pageX;
+startScrollLeft = carousel.scrollLeft;
+}
+
+const dragging = (e) => {
+if(!isDragging) return; // if isDragging is false return from here
+// Updates the scroll position of the carousel based on the cursor movement
+carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
+}
+
+const dragStop = () => {
+isDragging = false;
+carousel.classList.remove("dragging");
+}
+
+const infiniteScroll = () => {
+// If the carousel is at the beginning, scroll to the end
+if(carousel.scrollLeft === 0) {
+  carousel.classList.add("no-transition");
+  carousel.scrollLeft = carousel.scrollWidth - (2 * carousel.offsetWidth);
+  carousel.classList.remove("no-transition");
+}
+// If the carousel is at the end, scroll to the beginning
+else if(Math.ceil(carousel.scrollLeft) === carousel.scrollWidth - carousel.offsetWidth) {
+  carousel.classList.add("no-transition");
+  carousel.scrollLeft = carousel.offsetWidth;
+  carousel.classList.remove("no-transition");
+}
+
+// Clear existing timeout & start autoplay if mouse is not hovering over carousel
+clearTimeout(timeoutId);
+if(!wrapper.matches(":hover")) autoPlay();
+}
+
+const autoPlay = () => {
+if(window.innerWidth < 800 || !isAutoPlay) return; // Return if window is smaller than 800 or isAutoPlay is false
+// Autoplay the carousel after every 2500 ms
+timeoutId = setTimeout(() => carousel.scrollLeft += firstCardWidth, 10000);
+}
+autoPlay();
+
+carousel.addEventListener("mousedown", dragStart);
+carousel.addEventListener("mousemove", dragging);
+document.addEventListener("mouseup", dragStop);
+carousel.addEventListener("scroll", infiniteScroll);
+wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
+wrapper.addEventListener("mouseleave", autoPlay);
+
+const slidCards = document.querySelectorAll(".slid-card");
+
+const handleCardClick = (event) => {
+  const previouslySelected = document.querySelector(".slid-card.selected");
+  if (previouslySelected) {
+    previouslySelected.classList.remove("selected");
+  }
+
+  const currentCard = event.currentTarget;
+  currentCard.classList.add("selected");
+}
+
+</script>

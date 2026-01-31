@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Search Bar</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    .search-container {
+      width: 100%;
+      max-width: 500px;
+      height: 40px;
+      position: relative;
+    }
+
+    .search-input-container {
+      position: relative;
+      height: 100%;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 100%;
+      padding: 0 15px 0 40px;
+      background: #282828;
+      color: white;
+      border: 1px solid #3f3f3f;
+      border-radius: 20px;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: #aaa;
+      pointer-events: none;
+    }
+
+    .search-results {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  right: 0;
+  width: 111%; /* You can set a specific width like 80% or 600px */
+  background: #282828;
+  border: 1px solid #3f3f3f;
+  border-radius: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  display: none;
+  z-index: 1000;
+}
+
+
+    .search-result-item {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .search-result-item:hover {
+      background: #383838;
+    }
+
+    .search-result-item img {
+      width: 40px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .result-content {
+      flex: 1;
+    }
+
+    .result-title {
+      font-weight: 500;
+      color: white;
+      font-size: 14px;
+    }
+
+    .result-subtitle {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 4px;
+    }
+
+    .no-results {
+      padding: 16px;
+      color: #aaa;
+      text-align: center;
+    }
+
+    /* Scrollbar styling */
+    .search-results::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .search-results::-webkit-scrollbar-track {
+      background: #202020;
+    }
+
+    .search-results::-webkit-scrollbar-thumb {
+      background: #404040;
+      border-radius: 3px;
+    }
+
+@media (max-width: 768px) {
+  .search-container {
+    max-width: 318px;       /* narrower width */
+    padding-left: 5px;
+    position: relative;
+  }
+
+  .search-input {
+    height: 38px;           /* taller input */
+    font-size: 14px;
+    padding-left: 44px;     /* enough left padding for icon + spacing */
+    line-height: 38px;      /* align text vertically */
+    border-radius: 19px;    /* half of height for a pill shape */
+  }
+
+  .search-icon {
+    width: 20px;
+    height: 20px;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+  }
+
+  .search-results {
+    width: 116.5%;
+    max-height: 180px;
+    font-size: 13px;
+    border-radius: 10px;
+    margin-left: 5px; /* Adjust value as needed */
+  }
+
+  .search-result-item {
+    padding: 8px 12px;
+  }
+
+  .search-result-item img {
+    width: 28px;
+    height: 42px;
+  }
+
+  .result-title {
+    font-size: 14px;
+  }
+
+  .result-subtitle {
+    font-size: 12px;
+  }
+}
+
+    
+  </style>
+</head>
+<body>
+  <div class="search-container">
+    <div class="search-input-container">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" id="searchBar" class="search-input" placeholder="Search Series..." autocomplete="off">
+    </div>
+    <div id="searchResults" class="search-results"></div>
+  </div>
+
+  <script>
+   const dramas = [
+    { name: "The Glory", file: "Glory.html", poster: "https://image.tmdb.org/t/p/original/uUM4LVlPgIrww07OoEKrGWlS1Ej.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+  { name: "Tommorow", file: "Tmr.html", poster: "https://m.media-amazon.com/images/M/MV5BZWI1ZjQxNzktYzVmYy00MTJjLTgzMGQtMzZlZjdiYWIyNzU3XkEyXkFqcGc@._V1_QL75_UY562_CR7,0,380,562_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+    { name: "Branding In Seongsu", file: "Brand.html", poster: "https://image.tmdb.org/t/p/original/q9BsaOEfL6GSBjm7v47pkdXYNrs.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+  { name: "Queen Of The Ring", file: "Ring.html", poster: "https://media.themoviedb.org/t/p/w500/3Fh0F9tlq1ly788RnZRPoreAhSY.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+    { name: "Queen Of Tears", file: "Tears.html", poster: "https://i.pinimg.com/736x/0b/2e/9f/0b2e9f2a20b251450178800397c419b2.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+  { name: "The Uncanny Counter", file: "Uncanny.html", poster: "https://m.media-amazon.com/images/I/81HWMykk35L._AC_UF894,1000_QL80_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+    { name: "Gaus Electronics", file: "Gaus.html", poster: "https://blog.asianwiki.com/wp-content/uploads/2022/08/Gaus_Electronics-p1.jpeg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+  { name: "Mr Queen", file: "MrQueen.html", poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfAxNsTw82CqGojZ8FTtan18P7eYfW478_Pg&s", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+    { name: "Lovely Runner", file: "Runner.html", poster: "https://asianwiki.com/images/3/39/Lovely_Runner-p1.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+  { name: "20th Century Girl", file: "Century.html", poster: "https://i.pinimg.com/736x/32/62/e8/3262e801fa7a19fad9e206bffde75950.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+    { name: "Sweet Home", file: "Sweet.html", poster: "https://m.media-amazon.com/images/M/MV5BZDE0MTM5YjgtMzNhOS00NWE2LTkxN2EtMzg0NWRmODBmMDA5XkEyXkFqcGc@._V1_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐" },
+  { name: "Alchemy Of Souls", file: "Alchemy.html", poster: "https://image.tmdb.org/t/p/original/q2IiPRSXPOZ6qVRj36WRAYEQyHs.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+    { name: "Strong Girl Bong Soon", file: "DoBong.html", poster: "https://fr.web.img4.acsta.net/pictures/23/01/17/09/16/2653062.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+  { name: "The Frog", file: "Frog.html", poster: "https://m.media-amazon.com/images/M/MV5BZGM4Y2VhYjMtZGMzYS00YTI5LTk5NWUtMTcxNTJlOGMyZGE2XkEyXkFqcGc@._V1_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+    { name: "No Gain No Love", file: "NoGain.html", poster: "https://m.media-amazon.com/images/M/MV5BZjYwZjVjODUtNjcwNS00NjJmLWE1ODItZTRhOTU3Y2YwMGE0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+  { name: "My Demon", file: "Demon.html", poster: "https://image.tmdb.org/t/p/original/zthWx1TKEXy9MOfedBaJ0ZLr8vn.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐" },
+    { name: "Good Bad Mother", file: "GoodBad.html", poster: "https://image.tmdb.org/t/p/original/fvcEgIUZMks1cZPgZTnIHqUArtN.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐" },
+  { name: "Love Alarm", file: "Alarm.html", poster: "https://static.wikia.nocookie.net/netflix/images/0/03/Love_Alarm_S2.jpg/revision/latest?cb=20210314002720", subtitle: "⭐⭐⭐⭐⭐ ⭐" },
+    { name: "Marry My Husband", file: "Marry.html", poster: "https://image.tmdb.org/t/p/original/dQiZHHa23M1lbggcF6pPUF7i862.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐" },
+  { name: "Abyss", file: "Abyss.html", poster: "https://wallpapercave.com/wp/wp12064035.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐" },
+    { name: "18 Again", file: "Again.html", poster: "https://i.pinimg.com/originals/a6/88/47/a6884717a8a52dfa080f5659f76d8da1.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐" },
+  { name: "Tale Of The Nine Tailed", file: "Tale.html", poster: "https://m.media-amazon.com/images/M/MV5BMDI1MzI0NGItODViMC00ZjdlLWE5NWEtM2U4ZDQyZmNhNDk0XkEyXkFqcGdeQXVyNDI3NjU1NzQ@._V1_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐" },
+    { name: "Weight Lifting Fairy Kim Bok Joo", file: "Weight.html", poster: "https://fr.web.img6.acsta.net/pictures/23/01/09/11/39/0276741.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐" },
+  { name: "Sweet Home", file: "Sweet.html", poster: "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p19174483_b_v8_aa.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐" },
+    { name: "True Beauty", file: "True.html", poster: "https://m.media-amazon.com/images/M/MV5BNjk3NDk3MDEtMTU2OS00NTFiLWJkOWMtYTA2YjJlMTMyYTk1XkEyXkFqcGdeQXVyNDY5MjMyNTg@._V1_FMjpg_UX1000_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐" },
+  { name: "Its Okay Not To Be Okay", file: "Okay.html", poster: "https://upload.wikimedia.org/wikipedia/en/5/58/It%27s_Okay_to_Not_Be_Okay_Poster.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐" },
+    { name: "Doctor Slump", file: "Slump.html", poster: "https://m.media-amazon.com/images/M/MV5BZWZhMjI4MzYtYjY2Mi00ZmNkLWFkYjMtZjc3NzRiZDg2NjA0XkEyXkFqcGc@._V1_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐" },
+  { name: "Crash Landing On You", file: "Landing.html", poster: "https://m.media-amazon.com/images/M/MV5BMzRiZWUyN2YtNDI4YS00NTg2LTg0OTgtMGI2ZjU4ODQ4Yjk3XkEyXkFqcGdeQXVyNTI5NjIyMw@@._V1_FMjpg_UX1000_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐" },
+    { name: "Dr Stranger", file: "Stranger.html", poster: "https://i.pinimg.com/736x/49/e2/bc/49e2bcebe2990a1b7453851e84e6ae7a.jpg", subtitle: "⭐⭐⭐⭐⭐" },
+  { name: "Moving", file: "Moving.html", poster: "https://ih1.redbubble.net/image.5263500520.9016/flat,750x,075,f-pad,750x1000,f8f8f8.jpg", subtitle: "⭐⭐⭐⭐⭐" },
+    { name: "Itaewon Class", file: "Class.html", poster: "https://image.tmdb.org/t/p/original/ruwAlQ76fR1nZb3oWQanDfVI3Rc.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐" },
+  { name: "BloodHounds", file: "Blood.html", poster: "https://m.media-amazon.com/images/M/MV5BMmY3ZDZhNDUtN2NkMy00MDZhLTk5MjQtOTMzNDI2YjQwY2FmXkEyXkFqcGdeQXVyMTMzNzIyNDc1._V1_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐" },
+    { name: "W Two Worlds", file: "World.html", poster: "https://image.tmdb.org/t/p/original/rBuCoS0VB9M6zkEUCvnVrfeF0J.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐" },
+  { name: "Big Mouth", file: "Big.html", poster: "https://m.media-amazon.com/images/M/MV5BOWFhYzhkMjgtNjhjNC00NDUwLWE2M2MtODczYTliYTI4OWJkXkEyXkFqcGdeQXVyNDQxOTAyNA@@._V1_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐" },
+    { name: "Business Proposal", file: "Proposal.html", poster: "https://i.pinimg.com/originals/be/b0/18/beb018297063a92e70a369875cb4842f.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐" },
+  { name: "What's Wrong With Secretary Kim", file: "Kim.html", poster: "https://m.media-amazon.com/images/M/MV5BMGM2ODk3MTItN2ZkOS00ODMzLTg1ZjgtMWI3Y2U5ZDNmMzc0XkEyXkFqcGdeQXVyNjI4NDY5ODM@._V1_FMjpg_UX1000_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐" },
+      { name: "Vincenzo", file: "Vincenzo.html", poster: "https://rashkavip.com/wp-content/uploads/2023/08/qbkSS1cTjT4DzIwD44bdhTuYgdT-354x520.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐" },
+  { name: "King The Land", file: "King.html", poster: "https://m.media-amazon.com/images/M/MV5BZjE5ZDJmZGItMDRkNi00YjAxLTliYjQtYjBjZjk4Yjk4NjdhXkEyXkFqcGdeQXVyMTUzOTcyODA5._V1_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐" },
+      { name: "Strong Girl NamSoon", file: "NamSoon.html", poster: "https://m.media-amazon.com/images/M/MV5BODU5NDUxMGEtYzg5OS00NzBjLWFkZjctMzE5YzczOTU2ZGU0XkEyXkFqcGdeQXVyNjI4NDY5ODM@._V1_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐" },
+  { name: "A Shop For Killers", file: "Shop.html", poster: "https://fr.web.img4.acsta.net/pictures/24/01/17/09/22/4935737.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐" },
+      { name: "Love Next Door", file: "Door.html", poster: "https://asianwiki.com/images/7/7c/Love_Next_Door-p.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐" },
+  { name: "Spy x Family", file: "Spy.html", poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLSiQlO9fLddX0Nk0FJ9Nd4-piBYOr2bwsbg&s", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+    { name: "Frieren: Beyond Journey's End", file: "Frieren.html", poster: "https://m.media-amazon.com/images/M/MV5BZTI4ZGMxN2UtODlkYS00MTBjLWE1YzctYzc3NDViMGI0ZmJmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+  { name: "Solo Leveling", file: "Solo.html", poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjjydKUpH1rz3V2N2oTcKX7O3QIMkH_-xqqw&s", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+      { name: "The Reincarnation of the Strongest Exorcist in Another World", file: "Exorcist.html", poster: "https://m.media-amazon.com/images/M/MV5BNDZjNTgyNDktZTJmZi00YzQ3LWJjNGMtOWQ0ODE1OGMwNmMzXkEyXkFqcGc@._V1_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+  { name: "Mushoku Tensei Jobless Reincarnation", file: "Tensei.html", poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9rtG5dt8r74mgJQobeNflvD8faWZmgxRh8A&s", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+      { name: "Mashle: Magic and Muscles", file: "Mash.html", poster: "https://m.media-amazon.com/images/M/MV5BMTUwMjM2ZTctMjI5Yi00MjIwLWJlYzAtNjk5MDQ0NTlmZWJjXkEyXkFqcGc@._V1_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+  { name: "The Aristocrat's Otherworldly Adventure", file: "Aristocrat.html", poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuRy2h4jCWsG_fM4h4RGGHH7rWneifFTnhlw&s", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐" },
+      { name: "The Misfit of Demon King Academy", file: "Misfit.html", poster: "https://m.media-amazon.com/images/M/MV5BY2MzZGVhZTgtNWZlYi00NGI5LTk5N2QtYTkzMzNkMWM0NjBhXkEyXkFqcGc@._V1_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐" },
+  { name: "The Greatest Demon Lord Is Reborn as a Typical Nobody", file: "DLord.html", poster: "https://m.media-amazon.com/images/M/MV5BZTE0ZmQ0ZmYtYjllZS00MDg0LTk3YzMtYzBhMDk4ZjUzNzAyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐⭐" },
+      { name: "Re: Zero - Starting Life in Another World", file: "ReZero.html", poster: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ-GXnJH33t-Oulvgw2hTqRdzOv0OZh9FZu-tB6G-iPeih6bV_gaIy56MIiqCaRDmoaKWwVyw", subtitle: "⭐⭐⭐⭐⭐ ⭐⭐⭐" }
+];
+
+const searchBar = document.getElementById('searchBar');
+const searchResults = document.getElementById('searchResults');
+
+searchBar.addEventListener('input', function () {
+  const query = this.value.trim().toLowerCase();
+  searchResults.innerHTML = '';
+
+  if (query === '') {
+    searchResults.style.display = 'none';
+    return;
+  }
+
+  const startsWith = dramas.filter(drama =>
+    drama.name.toLowerCase().startsWith(query)
+  ).slice(0, 3); // Only 3 max
+
+  if (startsWith.length > 0) {
+    startsWith.forEach(drama => {
+      const item = document.createElement('div');
+      item.className = 'search-result-item';
+      item.innerHTML = `
+        <img src="${drama.poster}" class="poster" alt="${drama.name}">
+        <div class="result-content">
+          <div class="result-title">${drama.name.replace(/([a-z])([A-Z])/g, '$1 $2')}</div>
+          <div class="result-subtitle">${drama.subtitle}</div>
+        </div>
+      `;
+      item.addEventListener('click', () => {
+        window.open(drama.file, '_blank'); // Open in new tab
+      });
+      searchResults.appendChild(item);
+    });
+    searchResults.style.display = 'block';
+  } else {
+    searchResults.innerHTML = `<div class="no-results">No Series Found</div>`;
+    searchResults.style.display = 'block';
+  }
+});
+
+document.addEventListener('click', function (e) {
+  if (!searchBar.contains(e.target) && !searchResults.contains(e.target)) {
+    searchResults.style.display = 'none';
+  }
+});
+  </script>
+  <script>
+    // When search is active (example - when input is focused)
+function onSearchFocus() {
+  window.parent.postMessage({ type: 'searchActive' }, '*');
+}
+
+// When search is inactive
+function onSearchBlur() {
+  setTimeout(() => {
+    window.parent.postMessage({ type: 'searchInactive' }, '*');
+  }, 200);
+}
+
+// Add these to your search input events
+document.querySelector('input').addEventListener('focus', onSearchFocus);
+document.querySelector('input').addEventListener('blur', onSearchBlur);
+  </script>
+</body>
+</html>

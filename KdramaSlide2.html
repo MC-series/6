@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Include HTML</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <Style>
+
+body {
+  overflow-y: hidden; /* Prevent vertical scrolling */
+}
+
+a.topic {
+  color: #000000; /* Initial color */  transition: color 0.3s ease; /* Smooth transition for color */
+  text-decoration: none;
+}
+
+a.topic:hover {
+  color: rgb(196, 196, 196) !important; /* Force the color change */
+  text-decoration: none; /* Ensure text-decoration is removed on hover */
+}
+
+.slid-wrapper {
+  max-width: 1225px;
+  width: 150%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto; /* Center the container horizontally */
+  height: 85vh; /* Ensure the container takes full viewport height */
+}
+
+.slid-wrapper i {
+  top: 50%;
+  height: 50px;
+  width: 50px;
+  font-size: 1.25rem;
+  position: absolute;
+  text-align: center;
+  line-height: 50px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+  z-index: 1; /* Ensure above the carousel */
+}
+
+.slid-wrapper i:active {
+  transform: translateY(-50%) scale(0.85);
+}
+
+.slid-wrapper i:first-child {
+  left: -22px;
+}
+
+.slid-wrapper i:last-child {
+  right: -22px;
+}
+
+.slid-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.slid-carousel.no-transition {
+  scroll-behavior: auto;
+}
+
+.slid-carousel.dragging {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+
+.slid-carousel.dragging .slid-card {
+  cursor: grab;
+  user-select: none;
+}
+
+.slid-carousel .slid-card {
+  scroll-snap-align: start;
+  cursor: pointer;
+  flex-direction: column;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px; /* Added padding */
+}
+
+.slid-carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(100% / 6); /* Adjust this if necessary */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  border-radius: 8px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  height: 600px; /* Adjust if necessary */
+}
+
+.slid-card .slid-img {
+  width: 100%;
+  aspect-ratio: 6 / 9; /* Adjust to your images' ratio */
+  overflow: hidden;
+}
+
+.slid-card .slid-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* or 'contain' */
+}
+
+.slid-card a.topic {
+  display: block; /* Make <a> a block element */
+  width: 100%; /* Ensure it takes the full width of the .slid-img container */
+  padding: 8px 14px;
+  background: #fff;
+  color: #4b5563;
+  font-size: 0.9rem;
+  font-weight: 700;
+  outline: 0;
+  border: 0;
+  border-radius: 5px;
+  margin-top: 10px; /* Add margin-top for spacing between image and link */
+  text-align: center; /* Center the text inside the link */
+  cursor: pointer;
+}
+
+
+.topic {
+  display: inline-block; /* Ensure it stays inline with the image */
+  padding: 8px 14px;
+  background: #fff;
+  color: #4b5563;
+  font-size: 0.9rem;
+  font-weight: 700;
+  outline: 0;
+  border: 0;
+  border-radius: 5px;
+  margin-left: 10px; /* Add a small margin to the left for some space between image and topic */
+  cursor: pointer;
+}
+
+/* Tab S9 Plus (landscape) */
+@media only screen 
+  and (min-width: 1000px) 
+  and (max-width: 1600px) 
+  and (orientation: landscape) 
+  and (pointer: coarse) {
+
+  .slid-carousel {
+    grid-auto-columns: calc(100% / 5); /* 5 equal columns */
+    gap: 0; /* No gaps between images */
+    height: auto;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .slid-wrapper {
+    height: auto;
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1000px; /* Adjusted for 5 images */
+  }
+  
+  .slid-wrapper i {
+    height: 40px;
+    width: 40px;
+    font-size: 1rem;
+    line-height: 40px;
+    background: rgba(255,255,255,0.9);
+  }
+  
+  .slid-wrapper i:first-child {
+    left: -15px;
+  }
+  
+  .slid-wrapper i:last-child {
+    right: -15px;
+  }
+  
+  .slid-card {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+  }
+  
+  .slid-card .slid-img {
+    height: 280px; /* Custom height */
+    width: 190px; /* Custom width */
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+  
+  .slid-card .slid-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .slid-card a.topic {
+    font-size: 0.8rem;
+    padding: 5px 8px;
+    margin-top: 5px;
+    width: 180px; /* Match custom width */
+  }
+}
+
+/* Mobile styles (up to 767px) */
+@media only screen and (max-width: 767px) {
+  body {
+    overflow-y: auto;
+  }
+  
+  .slid-carousel {
+    grid-auto-columns: calc((100% - 6px) / 3); /* 3 images with 3px gap (2 gaps between 3 items) */
+    height: auto;
+    gap: 3px; /* Consistent 3px gap */
+    margin: 0 15px; /* Side space for arrows */
+    padding: 0;
+  }
+  
+  .slid-wrapper {
+    height: auto;
+    width: 100%;
+    padding: 0;
+  }
+  
+  .slid-wrapper i {
+    height: 32px;
+    width: 32px;
+    font-size: 0.85rem;
+    line-height: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.95);
+  }
+  
+  .slid-wrapper i:first-child {
+    left: -7px;
+  }
+  
+  .slid-wrapper i:last-child {
+    right: -7px;
+  }
+  
+  .slid-card {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .slid-card .slid-img {
+    aspect-ratio: 2/3;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .slid-card .slid-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .slid-card a.topic {
+    font-size: 0.7rem;
+    padding: 3px 5px;
+    margin: 3px 0 0 0; /* Small top margin */
+  }
+}
+
+    </Style>
+
+</head>
+<body>
+        
+  <div class="slid-wrapper">
+    <i id="left" class="fa-solid fa-angle-left"></i>
+    <div class="slid-carousel">
+      <div class="slid-card">
+        <div class="slid-img"><a href="Abyss.html" target="_blank"><img src="https://wallpapercave.com/wp/wp12064035.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Ring.html" target="_blank"><img src="https://media.themoviedb.org/t/p/w500/3Fh0F9tlq1ly788RnZRPoreAhSY.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Again.html" target="_blank"><img src="https://i.pinimg.com/originals/a6/88/47/a6884717a8a52dfa080f5659f76d8da1.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="King.html" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BODM2MGU3OTItNTUyZS00ODc2LWJlNzMtOTI5ZTQ4MjljMzI4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Tears.html" target="_blank"><img src="https://i.pinimg.com/736x/0b/2e/9f/0b2e9f2a20b251450178800397c419b2.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Uncanny.html" target="_blank"><img src="https://m.media-amazon.com/images/I/81HWMykk35L._AC_UF894,1000_QL80_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Class.html" target="_blank"><img src="https://image.tmdb.org/t/p/original/ruwAlQ76fR1nZb3oWQanDfVI3Rc.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Gaus.html" target="_blank"><img src="https://blog.asianwiki.com/wp-content/uploads/2022/08/Gaus_Electronics-p1.jpeg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="MrQueen.html" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfAxNsTw82CqGojZ8FTtan18P7eYfW478_Pg&s" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="NamSoon.html" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM0mLTsmGAkvCGp-WqGiqJPdjKJVjUsiJSkg&s" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Lovely.html" target="_blank"><img src="https://asianwiki.com/images/3/39/Lovely_Runner-p1.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Centery.html" target="_blank"><img src="https://i.pinimg.com/736x/32/62/e8/3262e801fa7a19fad9e206bffde75950.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Tale.html" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BMjQ5NzE5ZjUtZDVlYi00NjNlLWE0OTAtZTllNWYxZDMzNjFkXkEyXkFqcGc@._V1_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Alchemy.html" target="_blank"><img src="https://image.tmdb.org/t/p/original/q2IiPRSXPOZ6qVRj36WRAYEQyHs.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="DoBong.html" target="_blank"><img src="https://fr.web.img4.acsta.net/pictures/23/01/17/09/16/2653062.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Slump.html" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BZWZhMjI4MzYtYjY2Mi00ZmNkLWFkYjMtZjc3NzRiZDg2NjA0XkEyXkFqcGc@._V1_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Weight.html" target="_blank"><img src="https://fr.web.img6.acsta.net/pictures/23/01/09/11/39/0276741.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Shop.html" target="_blank"><img src="https://fr.web.img4.acsta.net/pictures/24/01/17/09/22/4935737.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Frog.html" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BZGM4Y2VhYjMtZGMzYS00YTI5LTk5NWUtMTcxNTJlOGMyZGE2XkEyXkFqcGc@._V1_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="NoGain.html" target="_blank"><img src="https://m.media-amazon.com/images/M/MV5BZjYwZjVjODUtNjcwNS00NjJmLWE1ODItZTRhOTU3Y2YwMGE0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      <div class="slid-card">
+        <div class="slid-img"><a href="Door.html" target="_blank"><img src="https://asianwiki.com/images/7/7c/Love_Next_Door-p.jpg" alt="1" draggable="false"></a></div>
+      </div>
+      
+    </div>
+  <i id="right" class="fa-solid fa-angle-right"></i>
+  </div>
+  
+  </div>  
+  </div>
+
+</body>
+</html>
+<script>
+
+// Image Slidder Code:
+const wrapper = document.querySelector(".slid-wrapper");
+const carousel = document.querySelector(".slid-carousel");
+const firstCardWidth = carousel.querySelector(".slid-card").offsetWidth;
+const arrowBtns = document.querySelectorAll(".slid-wrapper i");
+const carouselChildrens = [...carousel.children];
+let isDragging = false, isAutoPlay = true, startX, startScrollLeft, timeoutId;
+
+// Get the number of cards that can fit in the carousel at once
+let cardPerView = Math.round(carousel.offsetWidth / firstCardWidth);
+
+// Insert copies of the last few cards to beginning of carousel for infinite scrolling
+carouselChildrens.slice(-cardPerView).reverse().forEach(card => {
+carousel.insertAdjacentHTML("afterbegin", card.outerHTML);
+});
+
+// Insert copies of the first few cards to end of carousel for infinite scrolling
+carouselChildrens.slice(0, cardPerView).forEach(card => {
+carousel.insertAdjacentHTML("beforeend", card.outerHTML);
+});
+
+// Scroll the carousel at appropriate position to hide first few duplicate cards on Firefox
+carousel.classList.add("no-transition");
+carousel.scrollLeft = carousel.offsetWidth;
+carousel.classList.remove("no-transition");
+
+// Add event listeners for the arrow buttons to scroll the carousel left and right
+arrowBtns.forEach(btn => {
+btn.addEventListener("click", () => {
+  carousel.scrollLeft += btn.id == "left" ? -firstCardWidth : firstCardWidth;
+});
+});
+
+const dragStart = (e) => {
+isDragging = true;
+carousel.classList.add("dragging");
+// Records the initial cursor and scroll position of the carousel
+startX = e.pageX;
+startScrollLeft = carousel.scrollLeft;
+}
+
+const dragging = (e) => {
+if(!isDragging) return; // if isDragging is false return from here
+// Updates the scroll position of the carousel based on the cursor movement
+carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
+}
+
+const dragStop = () => {
+isDragging = false;
+carousel.classList.remove("dragging");
+}
+
+const infiniteScroll = () => {
+// If the carousel is at the beginning, scroll to the end
+if(carousel.scrollLeft === 0) {
+  carousel.classList.add("no-transition");
+  carousel.scrollLeft = carousel.scrollWidth - (2 * carousel.offsetWidth);
+  carousel.classList.remove("no-transition");
+}
+// If the carousel is at the end, scroll to the beginning
+else if(Math.ceil(carousel.scrollLeft) === carousel.scrollWidth - carousel.offsetWidth) {
+  carousel.classList.add("no-transition");
+  carousel.scrollLeft = carousel.offsetWidth;
+  carousel.classList.remove("no-transition");
+}
+
+// Clear existing timeout & start autoplay if mouse is not hovering over carousel
+clearTimeout(timeoutId);
+if(!wrapper.matches(":hover")) autoPlay();
+}
+
+const autoPlay = () => {
+if(window.innerWidth < 800 || !isAutoPlay) return; // Return if window is smaller than 800 or isAutoPlay is false
+// Autoplay the carousel after every 2500 ms
+timeoutId = setTimeout(() => carousel.scrollLeft += firstCardWidth, 10000);
+}
+autoPlay();
+
+carousel.addEventListener("mousedown", dragStart);
+carousel.addEventListener("mousemove", dragging);
+document.addEventListener("mouseup", dragStop);
+carousel.addEventListener("scroll", infiniteScroll);
+wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
+wrapper.addEventListener("mouseleave", autoPlay);
+
+const slidCards = document.querySelectorAll(".slid-card");
+
+const handleCardClick = (event) => {
+  const previouslySelected = document.querySelector(".slid-card.selected");
+  if (previouslySelected) {
+    previouslySelected.classList.remove("selected");
+  }
+
+  const currentCard = event.currentTarget;
+  currentCard.classList.add("selected");
+}
+
+</script>

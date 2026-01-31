@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CubeSeries - Read Reviews Anytime, Anywhere</title>
+    <link rel="stylesheet" href="IndexStyles.css">
+    <script src="IndexScript.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body id="toping">
+
+<!-- Loading Screen -->
+<div class="loading-screen">
+    <div class="loading-container">
+        <div class="loading-cube">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+        </div>
+        <div class="loading-text">CubeSeries</div>
+        <div class="browser-recommendation">
+            <i class="fas fa-info-circle"></i>
+            <span>For best experience, use Google Chrome</span>
+        </div>
+    </div>
+</div>
+
+    <header>
+        
+        <div class="logo-container">
+  <a href="#toping" class="logo">
+    <div class="logo-icon">
+      <div class="cube-shape animated-cube">
+        <i class="fas fa-star star-icon animated-star"></i>
+        <div class="shine"></div>
+      </div>
+    </div>
+    <span class="logo-text">CubeSeries</span>
+  </a>
+</div>
+          
+          <div class="searchbar-container">
+            <iframe src="SearchBar.html" class="searchbar-iframe" allow="same-origin" scrolling="no"></iframe>
+          </div>
+
+        <div class="nav-links">
+            <a href="#select" class="link"><i class="fas fa-image"></i></a>
+            <a href="indexActor.html" class="link"><i class="fas fa-clapperboard"></i></a>
+            <a href="#music" class="link"><i class="fab fa-spotify"></i></a>
+            <a href="https://discord.gg/T7bJZFKRmS" class="link"><i class="fab fa-discord"></i></a>
+            <a href="indexRank.html" class="premium-badge"><i class="fas fa-trophy"></i></a>
+        </div>
+    </header>
+
+
+    <!-- ====================== -->
+    <!-- HERO BANNER SECTION -->
+    <!-- ====================== -->
+    <section class="hero-banner">
+        <div class="banner-slides">
+            <div class="banner-slide active"></div>
+            <div class="banner-slide"></div>
+            <div class="banner-slide"></div>
+            <div class="banner-slide"></div>
+        </div>
+
+        <div class="slide-nav">
+            <div class="nav-arrow prev-arrow">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="nav-arrow next-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <h1>Read Reviews <br> Anytime, Anywhere</h1>
+            <p>Read All My Watched Kdrama and Anime<br> With Funny Moments And OST!</p>
+                <a class="hero-button" href="#news">LEARN MORE</a>
+        </div>
+
+        <div class="slide-indicators">
+            <div class="indicator active" data-slide="0">
+                <div class="indicator-progress"></div>
+            </div>
+            <div class="indicator" data-slide="1">
+                <div class="indicator-progress"></div>
+            </div>
+            <div class="indicator" data-slide="2">
+                <div class="indicator-progress"></div>
+            </div>
+            <div class="indicator" data-slide="3">
+                <div class="indicator-progress"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================== -->
+    <!-- PROMOTIONAL LINK - FAVORITES -->
+    <!-- ====================== -->
+    <a href="indexRank.html#anime" class="fav-link">
+      <div class="top-row">
+        <span class="fav-logo">
+            <i class="fas fa-crown"></i> <!-- Only this line changed -->
+        </span>
+        <span class="discord-text"  id="news">Check My Anime Rankings</span>
+      </div>  
+        <span class="fav-button">Check</span>
+    </a>
+
+    <!-- ====================== -->
+    <!-- ANIME NEWS SECTION -->
+    <!-- ====================== -->
+    <div class="container">
+        <div class="section-title-container">
+            <h2 class="section-title1" id="title1">Anime News</h2>
+        </div>
+
+<h2 class="tops1 desktop-header"> <br>
+  <span class="dod" style="margin-right: 300px;">Best Anime</span>
+  Latest Upload
+</h2>
+
+        
+        <h2 class="tops1 mobile-header">Best Anime</h2>
+
+
+          <br>
+        <div class="news-wrapper">
+            <!-- Top News -->
+            <div class="top-news">
+                <div class="top-news-item">
+                    <a href="Frieren.html" target="_blank">
+                        <img src="https://pics.filmaffinity.com/soso_no_frieren-451952873-large.jpg" alt="Frieren" class="top-news-image">
+                    </a>
+                    <p><strong><a href="Frieren.html" target="_blank">Frieren ~ S1 EP 28</a></strong></p>
+                </div>
+                <div class="top-news-item">
+                    <a href="Solo.html" target="_blank">
+                        <img src="https://m.media-amazon.com/images/I/811qwtjnRKL.jpg" alt="Solo Leveling" class="top-news-image">
+                    </a>
+                    <p><strong><a href="Solo.html" target="_blank">Solo Leveling ~ S2 EP 25</a></strong></p>
+                </div>
+                <div class="top-news-item">
+                    <a href="Tensei.html" target="_blank">
+                        <img src="https://m.media-amazon.com/images/M/MV5BYWQwNjk3MDItNDAxMS00YTQ2LWEyNDctMGYyZTE5OGQxNGQ1XkEyXkFqcGc@._V1_.jpg" alt="Mushoku Tensei Jobless Reincarnation" class="top-news-image">
+                    </a>
+                    <p><strong><a href="Tensei.html" target="_blank">Mushoku Tensei ~ S2 EP 49</a></strong></p>
+                </div>
+                <div class="top-news-item">
+                    <a href="Spy.html" target="_blank">
+                        <img src="https://rukminim2.flixcart.com/image/850/1000/l5bd5zk0/poster/x/u/y/medium-butcutnw14328-spy-x-family-matte-finish-poster-butcute-original-imaggysscsh38pxb.jpeg?q=90&crop=false" alt="Spy x Family" class="top-news-image">
+                    </a>
+                    <p><strong><a href="Spy.html" target="_blank">Spy X Family ~ S2 EP 37 Movie</a></strong></p>
+                </div>
+            </div>
+
+            <h2 class="tops1 mobile-header">Latest Upload</h2>
+
+            <div class="latest-news">
+                <div class="latest-item">
+                    <a href="" target="_blank">
+                        <img src="https://fr.web.img3.acsta.net/img/b6/74/b674af60032e00a9a2a7e0e233c07613.jpg" alt="Muscles" class="news-image">
+                    </a>
+                    <div>
+                        <p><a href="" target="_blank">Possibly the Greatest Alchemist of All Time</a></p>
+                        <span>Takumi Iruma is accidentally caught up in a summoning spell to gather heroes in the fantasy world of Mildgard. Since he cannot be returned to Earth, the goddess Nolyn compensates him with the power of alchemy. Takumi prefers to live a peaceful life, but his incredible powers start attracting attention.</span>
+                    </div>
+                </div>
+
+                <div class="latest-item">
+                    <a href="" target="_blank">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8Kgr4h5aA3-HQeU_Elb60dbEAxEhNDc-dJA&s" alt="Jobless" class="news-image">
+                    </a>
+                    <div>
+                        <p><a href="" target="_blank">Isekai Cheat Magician</a></p>
+                        <span>Isekai Cheat Magician is about a regular highschool boy Taichi and his friend Rin, a duo that get summoned into a fantasy world. They discover that they both possess immense magical abilities, and proceed to become adventurers in this new world.</span>
+                    </div>
+                </div>
+
+                <div class="latest-item">
+                    <a href="" target="_blank">
+                        <img src="https://m.media-amazon.com/images/M/MV5BYjEwNWYzYmUtZTlmYi00OTA3LTljOTEtYTVmZjNiNTQyYTAxXkEyXkFqcGc@._V1_.jpg" alt="Re:Zero" class="news-image">
+                    </a>
+                    <div>
+                        <p><a href="" target="_blank"></a>No Longer Allowed in Another World</p>
+                        <span>A depressed author only known as Sensei makes a suicide pact with his girlfriend Sacchan by a raging river. However, they are struck by a truck before they can jump. Sensei suddenly finds himself in another world, where an elf priestess named Annette says she summoned him to be a hero.</span>
+                    </div>
+                </div>
+
+                <div class="latest-item">
+                    <a href="" target="_blank">
+                        <img src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/d31ffa021edfe73060863960be6e34b8.jpg" alt="Misfit" class="news-image">
+                    </a>
+                    <div>
+                        <p><a href="" target="_blank"></a>Seirei Gensouki : Spirit Chronicles</p>
+                        <span>In a fantasy world, a young orphan called Rio who wants to take revenge on the man who murdered his mother, awakens memories of his past life as a Japanese young man called Haruto Amakawa. After rescuing Princess Flora from some kidnappers, Rio is captured under suspicions of being their accomplice.</span>
+                    </div>
+                </div>
+
+                <div class="latest-item">
+                    <a href="" target="_blank">
+                        <img src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/49d3f80e73bc99d36ef290f4964647c9.jpg" alt="Exorcist" class="news-image">
+                    </a>
+                    <div>
+                        <p><a href="" target="_blank">Assassins Pride</a></p>
+                        <span>In a world where only nobles can use mana, Kufa Vampir, a professional assassin, is hired to tutor Melida Angel, a noble girl with no magical talent. His secret mission is to kill her if she remains talentless. Defying his orders, Kufa instead shares his own mana with Melida, and he must now protect her burgeoning power while concealing his true identity and betrayal.</span>
+                    </div>
+                </div>
+
+                <div class="latest-item">
+                    <a href="" target="_blank">
+                        <img src="https://cdn.noitatnemucod.net/thumbnail/300x400/100/c47d9623085a6057088ccffdc6198492.jpg" alt="" class="news-image">
+                    </a>
+                    <div>
+                        <p><a href="" target="_blank">May I Ask for One Final Thing?</a></p>
+                        <span>Got it. Here is the absolute shortest summary:
+
+Falsely accused and publicly rejected by the prince, the powerful noblewoman **Scarlet** demands one final moment. Instead of a tearful apology, she unleashes her fighting skills and delivers a humiliating, brutal beatdown to the prince and his court, officially abandoning her noble life for a violent pursuit of justice.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- ====================== -->
+    <!-- PROMOTIONAL LINK - DRAMA -->
+    <!-- ====================== -->
+<a href="indexRank.html#kdramas" class="drama-link">
+    <div class="top-row">
+        <span class="drama-logo">
+            <i class="fas fa-star"></i>
+        </span>
+        <span class="discord-text">Check My Kdrama Rankings</span>
+    </div>
+    <span class="drama-button">Check</span>
+</a>
+
+
+   <!-- ====================== -->
+    <!-- Drama NEWS SECTION -->
+    <!-- ====================== -->
+    <div class="container">
+        <div class="section-title-container">
+            <h2 class="section-title3">Kdrama News</h2>
+        </div>
+
+<h2 class="tops2s desktop-header"> <br>
+  <span class="dod" style="margin-right: 310px;">Best Anime</span>
+  Latest Upload
+</h2>
+
+        <h2 class="tops2 mobile-header">Best Anime</h2>
+
+          <br>
+        <div class="news-wrappers">
+            <div class="top-newss">
+                <div class="top-news-items">
+                    <a href="Glory.html" target="_blank">
+                        <img src="https://image.tmdb.org/t/p/original/uUM4LVlPgIrww07OoEKrGWlS1Ej.jpg" alt="The Glory" class="top-news-images">
+                    </a>
+                    <p><strong><a href="Glory.html" target="_blank">The Glory ~ EP 16</a></strong></p>
+                </div>
+                <div class="top-news-items">
+                    <a href="Tmr.html" target="_blank">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZWI1ZjQxNzktYzVmYy00MTJjLTgzMGQtMzZlZjdiYWIyNzU3XkEyXkFqcGc@._V1_QL75_UY562_CR7,0,380,562_.jpg" alt="Tomorrow" class="top-news-images">
+                    </a>
+                    <p><strong><a href="Tmr.html" target="_blank">Tomorrow ~ EP 16</a></strong></p>
+                </div>
+                <div class="top-news-items">
+                    <a href="Alchemy.html" target="_blank">
+                        <img src="https://image.tmdb.org/t/p/original/q2IiPRSXPOZ6qVRj36WRAYEQyHs.jpg" alt="Alchemy Of Souls" class="top-news-images">
+                    </a>
+                    <p><strong><a href="Alchemy.html" target="_blank">Alchemy Of Souls ~ S2 EP 30</a></strong></p>
+                </div>
+                <div class="top-news-items">
+                    <a href="Frog.html" target="_blank">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZGM4Y2VhYjMtZGMzYS00YTI5LTk5NWUtMTcxNTJlOGMyZGE2XkEyXkFqcGc@._V1_.jpg" alt="The Frog" class="top-news-images">
+                    </a>
+                    <p><strong><a href="Frog.html" target="_blank">The Frog ~ EP 8</a></strong></p>
+                </div>
+            </div>
+
+    <h2 class="tops2 mobile-header">Latest Upload</h2>
+
+
+            <div class="latest-newss">
+                <div class="latest-items">
+                    <a href="Door.html" target="_blank">
+                        <img src="https://fr.web.img4.acsta.net/img/50/f7/50f70c796990c3906ac23695e554f450.jpg" alt="LoveNextDoor" class="news-images">
+                    </a>
+                    <div>
+                        <p><a href="Door.html" target="_blank"></a>Love Next Door</p>
+                        <span>Renowned young architect Choi Seung-hyo runs the atelier "In." Bae Seok-ryu, his childhood friend, rejoins his life after quitting her corporate job, resurfacing memories he'd rather forget from their peculiar childhood bond.</span>
+                    </div>
+                </div>
+
+                <div class="latest-items">
+                    <a href="Frog.html" target="_blank">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZGM4Y2VhYjMtZGMzYS00YTI5LTk5NWUtMTcxNTJlOGMyZGE2XkEyXkFqcGc@._V1_.jpg" alt="TheFrog" class="news-images">
+                    </a>
+                    <div>
+                        <p><a href="Frog.html" target="_blank"></a>The Frog</p>
+                        <span>When a mysterious visitor shows up at a vacation rental, a peaceful summer turns into a waking nightmare. The suspense thriller The Frog follows two men at the mercy of a ruthless killer — or killers — and an ace detective’s pursuit of justice.</span>
+                    </div>
+                </div>
+
+                <div class="latest-items">
+                    <a href="Slump.html" target="_blank">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZWZhMjI4MzYtYjY2Mi00ZmNkLWFkYjMtZjc3NzRiZDg2NjA0XkEyXkFqcGc@._V1_.jpg" alt="DoctorSlump" class="news-images">
+                    </a>
+                    <div>
+                        <p><a href="Slump.html" target="_blank"></a>Doctor Slump</p>
+                        <span>It is a romantic comedy series about the hate-to-love relationship between Nam Ha-neul and Yeo Jeong-woo, who both had promising prospects in their careers, but fell into a slump due to different circumstances. Ha-neul and Jeong-woo were high school rivals who despised each other and parted ways after finishing school.</span>
+                    </div>
+                </div>
+
+                <div class="latest-items">
+                    <a href="NoGain.html" target="_blank">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZjYwZjVjODUtNjcwNS00NjJmLWE1ODItZTRhOTU3Y2YwMGE0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="NoGainNoLove" class="news-images">
+                    </a>
+                    <div>
+                        <p><a href="NoGain.html" target="_blank"></a>No Gain No Love</p>
+                        <span>An ambitious, career driven Hae-young finds herself in a fix at work when an elevated role she has been eyeing comes with a ridiculous caveat; only married women can join this team that will directly work with the CEO Bok Gyu-hyun (Lee Sang-yi).</span>
+                    </div>
+                </div>
+
+                <div class="latest-items">
+                    <a href="Shop.html" target="_blank">
+                        <img src="https://fr.web.img4.acsta.net/pictures/24/01/17/09/22/4935737.jpg" alt="AShopForKillers" class="news-images">
+                    </a>
+                    <div>
+                        <p><a href="Shop.html" target="_blank"></a>A Shop for Killers</p>
+                        <span>A niece who lost her parents and grew up in the hands of an uncle who runs a shopping mall, faces a new truth after her uncle's sudden death. Jeong Hi An, a girl who tragically loses her parents.</span>
+                    </div>
+                </div>
+
+                <div class="latest-items">
+                    <a href="DoBong.html" target="_blank">
+                        <img src="https://fr.web.img4.acsta.net/pictures/23/01/17/09/16/2653062.jpg" alt="StrongGirlBongSoon" class="news-images">
+                    </a>
+                    <div>
+                        <p><a href="DoBong.html" target="_blank"></a>Strong Girl Bong-soon</p>
+                        <span> Do Bong-soon is a woman born with superhuman strength that comes from the long line of women possessing it. when Ahn Min Hyuk, the CEO of ainsoft, a gaming company witnesses her strength he hires her as his personal bodyguard.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- ====================== -->
+<!-- PROMOTIONAL LINK - SPOTIFY -->
+<!-- ====================== -->
+<div id="select"></div>
+
+<a href="#music" class="spotify-link">
+  <div class="top-row">
+    <span class="spotify-logo">
+        <i class="fab fa-spotify"></i> </span>
+    <span class="discord-text">Listen on Spotify</span>
+  </div>
+    <span class="spotify-button">Play</span>
+</a>
+
+    <!-- ====================== -->
+    <!-- KDRAMA SELECTION SECTION -->
+    <!-- ====================== -->
+    <div class="container">
+        <div class="section-title-container">
+            <h2 class="section-title2">Select A Kdrama</h2>
+        </div>
+    </div>
+
+    <div class="iframe-container">
+        <iframe class="c" src="KdramaSlide1.html"></iframe>
+    </div>
+  
+    <br>
+  
+    <div class="iframe-container">
+        <iframe class="c" src="KdramaSlide2.html"></iframe>
+    </div>
+
+    <!-- ====================== -->
+    <!-- STREAMING PLATFORMS SECTION -->
+    <!-- ====================== -->
+    <div class="container">
+        <div class="section-title-container">
+            <h2 class="section-title2s">Where To Watch</h2>
+        </div>
+    </div>
+    <div class="icon-container">
+        <a href="https://www.netflix.com" class="icon-link">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Netflix_icon.svg/2048px-Netflix_icon.svg.png" alt="Netflix" class="icon">
+            <div class="icon-title">Netflix</div>
+        </a>
+        <a href="https://www.bilibili.tv/en/search" class="icon-link">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX1gVMgJxjUTEOzqcbPOxom5UaRFZGMaA5hw&s" alt="Bilibili" class="icon">
+            <div class="icon-title">Bilibili</div>
+        </a>
+        <a href="https://www.dramacool.bg/" class="icon-link">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhuLlQbj1l5mGkmb96WlUtGrQnDYegsYdJ3g&s" alt="DramaCool" class="icon">
+            <div class="icon-title">DramaCool</div>
+        </a>
+        <a href="https://www.myasiantv.es/" class="icon-link">
+            <img src="https://i0.wp.com/theinscribermag.com/wp-content/uploads/2024/05/images-35.jpeg?fit=512%2C512&ssl=1" alt="MyAsianTv" class="icon">
+            <div class="icon-title">MyAsianTv</div>
+        </a>
+    </div>
+    <br><br>
+
+    <!-- ====================== -->
+    <!-- PROMOTIONAL LINK - ACTORS -->
+    <!-- ====================== -->
+<a href="indexActor.html" class="actor-link">
+    <div class="top-row">
+        <span class="actor-logo">
+            <i class="fas fa-star"></i>
+        </span>
+        <span class="discord-text">Check My Favorite Actors</span>
+    </div>
+    <span class="actor-button">Check</span>
+</a>
+
+    <!-- ====================== -->
+    <!-- ANIME SELECTION SECTION -->
+    <!-- ====================== -->
+    <div class="container">
+        <div class="section-title-container">
+            <h2 class="section-title4">Select An Anime</h2>
+        </div>
+    </div>
+
+    <div class="iframe-container">
+        <iframe class="c" src="AnimeSlide1.html"></iframe>
+    </div>
+
+
+    <!-- ====================== -->
+    <!-- STREAMING PLATFORMS SECTION -->
+    <!-- ====================== -->
+    <div class="container">
+        <div class="section-title-container">
+            <h2 class="section-title4">Where To Watch</h2>
+        </div>
+    </div>
+    <div class="icon-container">
+        <a href="https://www.crunchyroll.com" class="icon-link">
+            <img src="https://cdn0.iconfinder.com/data/icons/socicons-3/512/Crunchyroll-512.png" alt="Crunchyroll" class="icon">
+            <div class="icon-title">Crunchyroll</div>
+        </a>
+        <a href="https://www.wcostream.com/" class="icon-link">
+            <img src="https://cdn-1.webcatalog.io/catalog/wco-tv/wco-tv-icon-filled-256.png?v=1714776428974" alt="WCO" class="icon">
+            <div class="icon-title">WcoTv</div>
+        </a>
+        <a href="https://aniwatchtv.to/" class="icon-link">
+            <img src="https://pbs.twimg.com/profile_images/1763048319171936256/K-KVHays_400x400.jpg" alt="WCO TV" class="icon">
+            <div class="icon-title">AniWatchTv</div>
+        </a>
+        <a href="https://www.bilibili.tv/en/search" class="icon-link">
+            <img src="https://play-lh.googleusercontent.com/UFsIakFwHqtPuPJJJpOvMbj63FTNPF19_i9nCwtf_J2Gug3tSPbx_bNe6sZxjcdUSRtz" alt="MyAsianTv" class="icon">
+            <div class="icon-title">Bilibili</div>
+        </a>
+    </div>
+    <br><br>
+
+    <!-- ====================== -->
+    <!-- PROMOTIONAL LINK - DISCORD -->
+    <!-- ====================== -->
+    <a href="https://discord.gg/T7bJZFKRmS" class="discord-link">
+      <div class="top-row">
+        <span class="discord-logo">
+            <i class="fab fa-discord"></i> </span>
+        <span class="discord-text">Join us on Discord</span>
+      </div>       
+        <span class="discord-button">Connect</span>
+    </a>
+
+    <!-- ====================== -->
+    <!-- OLD VERSIONS SECTION -->
+    <!-- ====================== -->
+    <div class="container">
+        <div class="section-title-container">
+            <h2 class="section-title6">Old Versions Of The Page</h2>
+        </div>
+        <br><br>
+        <div class="episode-grid">
+            <div class="episode-card">
+                <div class="episode-poster">
+                       <a href="Legacy.html" target="_blank">
+                    <img src="https://i.ibb.co/fzHjwqWf/Screenshot-2025-06-02-171156.png" alt="1">
+                        </a>                
+                </div>
+                <div class="episode-info">
+                    <div class="episode-title">Legacy </div>
+                </div>
+            </div>
+
+            <div class="episode-card">
+                <div class="episode-poster">
+                       <a href="Older.html" target="_blank">
+                    <img src="https://i.ibb.co/KxTfT3t4/Screenshot-2025-06-02-171213.png" alt="2">
+                        </a>                
+                </div>
+                <div class="episode-info">
+                    <div class="episode-title">Older</div>
+                </div>
+            </div>
+
+            <div class="episode-card">
+                <div class="episode-poster">
+                       <a href="Mid.html" target="_blank">
+                    <img src="https://i.ibb.co/ZRn5dz6S/Screenshot-2025-06-02-171231.png" alt="3">
+                        </a>                
+                </div>
+                <div class="episode-info">
+                    <div class="episode-title">Mid</div>
+                </div>
+            </div>
+
+            <div class="episode-card">
+                <div class="episode-poster">
+                       <a href="https://cubewsr.github.io/CubeWSR/" target="_blank">
+                    <img src="https://i.ibb.co/23KkPPqG/Screenshot-2025-06-02-171619.png" alt="4">
+                        </a>                
+                </div>
+                <div class="episode-info">
+                    <div class="episode-title">Newer</div>
+                </div>
+            </div>
+
+            <div class="episode-card">
+                <div class="episode-poster">
+                       <a href="https://wkseries.github.io/MyWns/" target="_blank">
+                    <img src="https://i.ibb.co/DfrzChLG/Screenshot-2025-06-02-171654.png" alt="5">
+                        </a>
+                </div>
+                <div class="episode-info">
+                    <div class="episode-title">Latest</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================== -->
+    <!-- MUSIC PLAYER SECTION -->
+    <!-- ====================== -->
+    <div class="music-container" id="music">
+        <iframe class="music" src="https://open.spotify.com/embed/playlist/0nGSCdiMdOoQuAnirdQUPY?utm_source=generator"></iframe>
+        <iframe class="music" src="https://open.spotify.com/embed/playlist/4Igd4Wy6Ew4METYcZJSySM?utm_source=generator"></iframe>
+    </div>
+
+    <!-- ====================== -->
+    <!-- FOOTER SECTION -->
+    <!-- ====================== -->
+    <footer>
+        <div class="copyright">
+            © 2023 CubeSeries, LLC. All rights reserved.
+        </div>
+        <div class="footer-links">
+            <a href="https://discord.gg/T7bJZFKRmS" class="link">Contact Us</a>
+        </div>
+    </footer>
+
+<!-- Scroll to Top Button -->
+<button id="scrollToTopBtn" class="scroll-to-top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+
+</body>
+</html>
